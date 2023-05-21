@@ -24,7 +24,7 @@ Check out the demo site [HERE](https://notion-blog-wildcatco.vercel.app/blog)
 
 https://www.youtube.com/watch?v=rZgh8a4ZjA8
 
-[![Video Label](http://img.youtube.com/vi/ZHR6xYc1KIY/0.jpg)](https://youtu.be/rZgh8a4ZjA8)
+[![Video Label](http://img.youtube.com/vi/rZgh8a4ZjA8/0.jpg)](https://youtu.be/rZgh8a4ZjA8)
 
 ## 🌟 Features
 - Simple to sync Notion and blog
