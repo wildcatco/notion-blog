@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .bg-primary {
+    @apply bg-[#f7f7f7] dark:bg-customGray-dark;
+  }
+
+  .bg-secondary {
+    @apply bg-customGray-base dark:bg-customGray-light;
+  }
+
+  .text-primary {
+    @apply text-black dark:text-white;
+  }
+
+  .text-secondary {
+    @apply text-gray-500 dark:text-slate-500;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+a,
+div,
+button {
+  -webkit-tap-highlight-color: transparent;
+}

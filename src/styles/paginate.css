@@ -1,0 +1,15 @@
+.paginate {
+  @apply flex items-center justify-center space-x-2;
+}
+
+.paginate li {
+  @apply flex h-8 w-8 select-none items-center justify-center;
+}
+
+.paginate .selected {
+  @apply rounded-full bg-red-500 text-white;
+}
+
+.paginate .disabled {
+  @apply invisible;
+}
