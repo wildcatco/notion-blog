@@ -7,12 +7,9 @@ export async function getPostsFromCachePageServer() {
   const html = await response.text();
   const dom = new JSDOM(html);
 
-  const prevPosts: Post[] = [];
-  dom.window.document
-    .querySelectorAll<HTMLDivElement>('#posts>div')
-    .forEach((node) => {
-      node.dataset.post && prevPosts.push(JSON.parse(node.dataset.post));
-    });
+  const prevPosts: Post[] = JSON.parse(
+    dom.window.document.querySelector<HTMLDivElement>('#posts')!.dataset.posts!
+  );
 
   return prevPosts;
 }
