@@ -27,7 +27,7 @@ export default function SyncPage() {
 
     const slugsToRevalidate: string[] = [];
 
-    const revalidatedAtListPromise: Promise<number>[] = [];
+    const revalidatedAtListPromise: Promise<number | null>[] = [];
     for (const post of posts) {
       if (prevPosts.find((p) => p.slug === post.slug)) {
         revalidatedAtListPromise.push(getRevalidatedAt(post.slug));
@@ -36,7 +36,8 @@ export default function SyncPage() {
     const revalidatedAtList = await Promise.all(revalidatedAtListPromise);
 
     posts.forEach((post, index) => {
-      if (post.lastEditedAt > revalidatedAtList[index]) {
+      const revalidatedAt = revalidatedAtList[index];
+      if (!revalidatedAt || post.lastEditedAt > revalidatedAt) {
         slugsToRevalidate.push(post.slug);
       }
     });

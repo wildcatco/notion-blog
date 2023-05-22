@@ -5,8 +5,12 @@ export async function getRevalidatedAt(slug: string) {
   const doc = parser.parseFromString(html, 'text/html');
 
   const revalidatedAt = doc
-    .querySelector('article')!
-    .getAttribute('data-revalidated-at');
+    .querySelector('article')
+    ?.getAttribute('data-revalidated-at');
+
+  if (!revalidatedAt) {
+    return null;
+  }
 
   return Number(revalidatedAt);
 }
