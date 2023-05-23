@@ -2,15 +2,10 @@ import { MetadataRoute } from 'next';
 import { PHASE_PRODUCTION_BUILD } from 'next/constants';
 
 import { getAllPostsFromNotion } from '@/services/posts';
-import { Post } from '@/types/post';
-import { getPostsFromCachePageServer } from '@/utils/get-posts-from-cache-page-server';
 import { getRevalidatedAt } from '@/utils/get-revalidated-at';
 
 export default async function sitemap() {
-  const allPosts =
-    process.env.NEXT_PHASE === PHASE_PRODUCTION_BUILD
-      ? await getAllPostsFromNotion()
-      : await getPostsFromCachePageServer();
+  const allPosts = await getAllPostsFromNotion();
   const sitemap: MetadataRoute.Sitemap = [];
 
   for (const post of allPosts) {

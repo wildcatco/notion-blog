@@ -3,7 +3,6 @@
 import { useEffect, useState } from 'react';
 
 import { Post } from '@/types/post';
-import { getPostsFromCachePageClient } from '@/utils/get-posts-from-cache-page-client';
 import { getRevalidatedAt } from '@/utils/get-revalidated-at';
 
 export default function SyncPage() {
@@ -12,7 +11,6 @@ export default function SyncPage() {
 
   const sync = async (password: string) => {
     setMessage('Detecting changes');
-    const prevPosts = await getPostsFromCachePageClient();
     const postsRes = await fetch(`/api/posts?password=${password}`);
 
     if (postsRes.status === 403) {
@@ -23,7 +21,10 @@ export default function SyncPage() {
       setMessage('Notion api error, try again later');
       return false;
     }
+
     const { posts }: { posts: Post[] } = await postsRes.json();
+    const prevPostsRes = await fetch(`/api/posts/cache?password=${password}`);
+    const { posts: prevPosts }: { posts: Post[] } = await prevPostsRes.json();
 
     const slugsToRevalidate: string[] = [];
 
@@ -56,7 +57,7 @@ export default function SyncPage() {
       setSlugs(slugsToRevalidate);
 
       const promises: Promise<Response>[] = [];
-      await fetch(`/api/revalidate?path=/cache&password=${password}`);
+      await fetch(`/api/revalidate?path=/api/posts/cache&password=${password}`);
       promises.push(fetch(`/api/revalidate?path=/blog&password=${password}`));
       slugsToRevalidate.forEach((slug) => {
         promises.push(
