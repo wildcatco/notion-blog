@@ -59,7 +59,7 @@ https://www.youtube.com/watch?v=rZgh8a4ZjA8
 `NOTION_DATABASE_ID`: getting started step 3<br>
 `NOTION_AUTH_TOKEN`: getting started step 4<br>
 `NEXT_PUBLIC_SITE_URL`: URL of your site (http://localhost:3000 in local environment)<br>
-`SYNC_PASSWORD`: Choose your own password for sync
+`API_KEY`: Choose your own password for route handler
 
 ## Screenshots
 ### Desktop

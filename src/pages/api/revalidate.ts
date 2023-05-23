@@ -6,11 +6,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const { path, password } = req.query;
-
-  if (password !== process.env.SYNC_PASSWORD) {
-    return res.status(403).json({ message: 'Wrong password' });
-  }
+  const { path } = req.query;
 
   if (typeof path !== 'string' || !path) {
     return res.status(400).json({
