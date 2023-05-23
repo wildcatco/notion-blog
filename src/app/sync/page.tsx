@@ -3,7 +3,6 @@
 import { useEffect, useState } from 'react';
 
 import { Post } from '@/types/post';
-import { getRevalidatedAt } from '@/utils/get-revalidated-at';
 
 export default function SyncPage() {
   const [message, setMessage] = useState('');
@@ -28,17 +27,9 @@ export default function SyncPage() {
 
     const slugsToRevalidate: string[] = [];
 
-    const revalidatedAtListPromise: Promise<number | null>[] = [];
-    for (const post of posts) {
-      if (prevPosts.find((p) => p.slug === post.slug)) {
-        revalidatedAtListPromise.push(getRevalidatedAt(post.slug));
-      }
-    }
-    const revalidatedAtList = await Promise.all(revalidatedAtListPromise);
-
     posts.forEach((post, index) => {
-      const revalidatedAt = revalidatedAtList[index];
-      if (!revalidatedAt || post.lastEditedAt > revalidatedAt) {
+      const prevPost = prevPosts.find((p) => p.slug === post.slug);
+      if (!prevPost || post.lastEditedAt > prevPost.lastEditedAt) {
         slugsToRevalidate.push(post.slug);
       }
     });
@@ -57,7 +48,12 @@ export default function SyncPage() {
       setSlugs(slugsToRevalidate);
 
       const promises: Promise<Response>[] = [];
-      await fetch(`/api/revalidate?path=/api/posts/cache&password=${password}`);
+      promises.push(
+        fetch(`/api/revalidate?path=/api/posts/cache&password=${password}`)
+      );
+      promises.push(
+        fetch(`/api/revalidate?path=/sitemap.xml&password=${password}`)
+      );
       promises.push(fetch(`/api/revalidate?path=/blog&password=${password}`));
       slugsToRevalidate.forEach((slug) => {
         promises.push(
