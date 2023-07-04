@@ -1,8 +1,6 @@
 'use client';
 
 import dynamic from 'next/dynamic';
-import Image from 'next/image';
-import Link from 'next/link';
 
 import { useTheme } from 'next-themes';
 import { ExtendedRecordMap } from 'notion-types';
@@ -42,8 +40,6 @@ export default function NotionPage({
         Equation,
         Modal,
         Pdf,
-        nextLink: Link,
-        nextImage: Image,
       }}
     />
   );
