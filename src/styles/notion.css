@@ -27,3 +27,7 @@
 .notion-table-of-contents-active-item span {
   @apply !text-red-500;
 }
+
+.notion-page-content img{
+    position: static !important;
+}
