@@ -55,6 +55,8 @@ export default async function PostPage({
             alt="cover"
             fill
             style={{ objectFit: 'contain' }}
+            placeholder="blur"
+            blurDataURL={post.blurUrl}
           />
         </div>
         <NotionPage post={post} recordMap={recordMap} />

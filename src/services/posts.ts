@@ -1,5 +1,6 @@
 import { getRecordMap, mapImageUrl } from '@/libs/notion';
 import { Post } from '@/types/post';
+import { getBlurImage } from '@/utils/get-blur-image';
 
 export async function getAllPostsFromNotion() {
   const allPosts: Post[] = [];
@@ -49,5 +50,10 @@ export async function getAllPostsFromNotion() {
       });
     }
   });
+
+  const blurImagesPromises = allPosts.map((post) => getBlurImage(post.cover));
+  const blurImages = await Promise.all(blurImagesPromises);
+  allPosts.forEach((post, i) => (post.blurUrl = blurImages[i].base64));
+
   return allPosts;
 }
