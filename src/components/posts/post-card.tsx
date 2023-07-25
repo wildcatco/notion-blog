@@ -7,7 +7,7 @@ import CategoryList from '@/components/category-list';
 import { Post } from '@/types/post';
 
 export default function PostCard({
-  post: { slug, title, date, cover, categories },
+  post: { slug, title, date, cover, categories, blurUrl },
 }: {
   post: Post;
 }) {
@@ -20,6 +20,8 @@ export default function PostCard({
             alt="cover image"
             fill
             style={{ objectFit: 'cover' }}
+            placeholder="blur"
+            blurDataURL={blurUrl}
           />
         </div>
         <div className="flex h-48 flex-col p-4">

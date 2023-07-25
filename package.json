@@ -12,12 +12,14 @@
     "inspect": "npm run lint && npm run ts"
   },
   "dependencies": {
+    "@plaiceholder/next": "^3.0.0",
     "axios": "^1.4.0",
     "encoding": "^0.1.13",
     "hangul-chosung-search": "^1.0.2",
     "next": "13.4",
     "next-themes": "^0.2.1",
     "notion-client": "^6.16.0",
+    "plaiceholder": "^3.0.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.8.0",
@@ -27,20 +29,20 @@
     "sharp": "^0.32.1"
   },
   "devDependencies": {
+    "@trivago/prettier-plugin-sort-imports": "^4.1.1",
+    "@types/jsdom": "^21.1.1",
     "@types/node": "18.15.5",
     "@types/react": "18.0.28",
     "@types/react-dom": "18.0.11",
-    "@trivago/prettier-plugin-sort-imports": "^4.1.1",
-    "@types/jsdom": "^21.1.1",
     "autoprefixer": "^10.4.14",
+    "eslint": "8.36.0",
+    "eslint-config-next": "13.2.4",
+    "jsdom": "^22.0.0",
     "postcss": "^8.4.21",
     "prettier": "^2.8.6",
     "prettier-plugin-tailwindcss": "^0.2.5",
     "tailwindcss": "3.3",
     "tsx": "^3.12.7",
-    "typescript": "5.0.2",
-    "jsdom": "^22.0.0",
-    "eslint": "8.36.0",
-    "eslint-config-next": "13.2.4"
+    "typescript": "5.0.2"
   }
 }
