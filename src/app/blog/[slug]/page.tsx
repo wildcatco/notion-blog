@@ -23,10 +23,7 @@ export default async function PostPage({
 
   if (!post.published) {
     return (
-      <article
-        data-revalidated-at={new Date().getTime()}
-        className="mx-auto mt-40 text-center"
-      >
+      <article className="mx-auto mt-40 text-center">
         <h2 className="mb-4 text-3xl font-bold">Post Not Found</h2>
         <Link href="/blog">
           <span className="mr-2">&larr;</span>
@@ -47,10 +44,7 @@ export default async function PostPage({
 
   return (
     <>
-      <article
-        data-revalidated-at={new Date().getTime()}
-        className="mt-4 flex flex-col items-center md:mt-20"
-      >
+      <article className="mt-4 flex flex-col items-center md:mt-20">
         <div className="relative aspect-[3/2] w-[90vw] max-w-[900px]">
           <Image
             src={post.cover}

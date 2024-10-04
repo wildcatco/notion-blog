@@ -3,6 +3,8 @@ import { NextResponse } from 'next/server';
 import { getAllPostsFromNotion } from '@/services/posts';
 import { getErrorMessage } from '@/utils/get-error-message';
 
+export const dynamic = 'force-static';
+
 export async function GET() {
   try {
     const allPosts = await getAllPostsFromNotion();

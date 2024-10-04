@@ -1,5 +1,6 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 import { Post } from '@/types/post';
@@ -7,6 +8,7 @@ import { Post } from '@/types/post';
 export default function SyncPage() {
   const [message, setMessage] = useState('');
   const [slugs, setSlugs] = useState<string[]>([]);
+  const router = useRouter();
 
   const sync = async (password: string) => {
     setMessage('Detecting changes');
@@ -61,6 +63,11 @@ export default function SyncPage() {
         );
       });
       await Promise.all(promises);
+      await fetch(`/api/posts/cache?password=${password}`, {
+        cache: 'no-store',
+      });
+      router.prefetch('/blog');
+
       return true;
     }
   };
